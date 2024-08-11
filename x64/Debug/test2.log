@@ -1,0 +1,15 @@
+﻿  RenderWindow.cpp
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,42): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,42): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,64): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,64): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,68): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,68): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,71): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(32,71): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(67,37): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(67,37): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\dev\cpp\test1\test2\src\render\RenderWindow.cpp(77,51): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  test2.vcxproj -> C:\dev\cpp\test1\test2\x64\Debug\test2.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
