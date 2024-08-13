@@ -17,6 +17,7 @@ public:
 	int GetWidth() { return m_width; }
 	int GetHeight() { return m_height; }
 	void Render(Ball& ball);
+	void Render(SDL_Texture* texture);
 	void RenderArrow(Ball& ball, float angle);
 	void Clear();
 	void Cleanup();

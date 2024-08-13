@@ -15,10 +15,12 @@ private:
 	Vector2f m_midPoint;
 	float m_radius;
 	Vector2f m_velocity;
+	Vector2f m_spin;
 	SDL_Texture* m_texture;
 	CircleCollider m_collider;
 	float m_arrowRotationAngle;
 	float m_speed;
+	float m_friction;
 	bool m_isMouseDown;
 
 	// methods
@@ -27,7 +29,11 @@ private:
 public:
 	Ball(Vector2f position, float radius, SDL_Texture* texture);
 	//setters
-	void SetVelocity(Vector2f velocity) { m_velocity = velocity; }
+	void SetVelocity(Vector2f velocity) 
+	{ 
+		m_velocity = velocity; 
+		m_spin = Vector2f(-m_velocity.y, m_velocity.x);
+	}
 	void SetArrowRotationAngle(float angle) { m_arrowRotationAngle = angle; }
 	//getters
 	Vector2f GetPosition() { return m_position; }
@@ -40,5 +46,6 @@ public:
 	bool IsMouseDown() { return m_isMouseDown; }
 	void Update(double delta);
 	void Input(SDL_Event event);
+	void ApplyFriction(float deltaTime);
 	Vector2f GetMousePosAsVector();
 };

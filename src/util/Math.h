@@ -20,6 +20,7 @@ struct Vector2f
 namespace Utils
 {
 	Vector2f Normalize(const Vector2f& v);
+	float Magnitude(const Vector2f& v);
 }
 
 

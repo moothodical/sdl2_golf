@@ -11,4 +11,9 @@ namespace Utils
         return { 0, 0 }; // Return zero vector if length is zero
     }
 
+    float Utils::Magnitude(const Vector2f& v)
+    {
+        return std::sqrt(v.x * v.x + v.y * v.y);
+    }
+
 }

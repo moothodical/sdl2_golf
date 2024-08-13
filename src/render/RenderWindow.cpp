@@ -43,13 +43,20 @@ void RenderWindow::Render(Ball& ball)
 	{
 		RenderArrow(ball, ballRotationAngle);
 	}
+    
+    SDL_DestroyTexture(pointTexture);
+}
+
+void RenderWindow::Render(SDL_Texture* texture)
+{
+    SDL_RenderCopy(m_renderer, texture, nullptr, nullptr);
 }
 
 void RenderWindow::RenderArrow(Ball& ball, float angle)
 {
     Vector2f mousePos = ball.GetMousePosAsVector();
     Vector2f ballMidpoint = ball.GetMidpoint();
-    float initVelocityFactor = 900;
+    float initVelocityFactor = 200;
     
     // Calculate distance
     Vector2f direction(mousePos.x - ballMidpoint.x, mousePos.y - ballMidpoint.y);
@@ -85,7 +92,8 @@ void RenderWindow::RenderArrow(Ball& ball, float angle)
    
     // Render the arrow
     SDL_RenderCopyEx(m_renderer, arrowTexture, &src, &dest, angle, &pivot, SDL_FLIP_NONE);
-}
+    SDL_DestroyTexture(arrowTexture);
+   }
 
 void RenderWindow::Clear()
 {
@@ -94,6 +102,7 @@ void RenderWindow::Clear()
 
 void RenderWindow::Cleanup() 
 {
+    SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
 }
 
