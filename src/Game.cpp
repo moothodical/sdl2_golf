@@ -19,19 +19,24 @@ bool Game::Init()
         return 1;
     }
     LoadTextures();
+    InitObjects();
     return true;
+}
+
+void Game::InitObjects()
+{
+    m_walls.push_back(Wall(Vector2f(500, 300), m_textures["wall"]));
 }
 
 void Game::LoadTextures()
 {
     SDL_Texture* bgTexture = m_window.LoadTexture("res/bg.png");
-
-    // ball
     SDL_Texture* ballTexture = m_window.LoadTexture("res/player.png");
-    Ball ball(Vector2f(100, 100), 15, ballTexture);
+    SDL_Texture* wallTexture = m_window.LoadTexture("res/wall.png");
     
     m_textures["bg"] = bgTexture;
     m_textures["ball"] = ballTexture;
+    m_textures["wall"] = wallTexture;
 }
 
 void Game::Run()
@@ -66,8 +71,18 @@ void Game::Run()
         }
 
         ball.Update(deltaTime);
+
+        for (Wall& wall : m_walls)
+        {
+
+        }
+
         m_window.Clear();
         m_window.Render(m_textures["bg"]);
+        for (Wall& wall : m_walls)
+        {
+            m_window.Render(wall);
+        }
         m_window.Render(ball);
         m_window.Display();
     }

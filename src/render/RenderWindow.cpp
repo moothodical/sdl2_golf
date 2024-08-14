@@ -47,6 +47,11 @@ void RenderWindow::Render(Ball& ball)
     SDL_DestroyTexture(pointTexture);
 }
 
+void RenderWindow::Render(Wall& wall)
+{
+	SDL_Rect dest = { wall.m_position.x, wall.m_position.y, 32, 64 };
+    SDL_RenderCopy(m_renderer, wall.m_texture, nullptr, &dest);
+}
 void RenderWindow::Render(SDL_Texture* texture)
 {
     SDL_RenderCopy(m_renderer, texture, nullptr, nullptr);

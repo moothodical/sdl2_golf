@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 
 #include "../entity/Ball.h"
+#include "../entity/Wall.h"
 
 class RenderWindow
 {
@@ -17,6 +18,7 @@ public:
 	int GetWidth() { return m_width; }
 	int GetHeight() { return m_height; }
 	void Render(Ball& ball);
+	void Render(Wall& ball);
 	void Render(SDL_Texture* texture);
 	void RenderArrow(Ball& ball, float angle);
 	void Clear();

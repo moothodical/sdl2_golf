@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="src\collision\CircleCollider.h" />
     <ClInclude Include="src\entity\Ball.h" />
+    <ClInclude Include="src\entity\Wall.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\render\RenderWindow.h" />
     <ClInclude Include="src\util\Constants.h" />
