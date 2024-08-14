@@ -1,4 +1,6 @@
-#include "Math.h"
+#include <cmath>
+
+#include "Math.h" 
 
 namespace Utils
 {
@@ -15,5 +17,14 @@ namespace Utils
     {
         return std::sqrt(v.x * v.x + v.y * v.y);
     }
+    
+    float Utils::Distance(const Vector2f& v, const Vector2f& v2)
+    {
+        return sqrt(pow(v2.x - v.x, 2) + pow(v2.y - v.y, 2)); 
+    }
 
+    float Utils::DistanceSquared(const Vector2f& v, const Vector2f& v2)
+    {
+        return (v2.x - v.x) * (v2.x - v.x) + (v2.y - v.y) * (v2.y - v.y);
+    }
 }

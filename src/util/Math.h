@@ -21,6 +21,8 @@ namespace Utils
 {
 	Vector2f Normalize(const Vector2f& v);
 	float Magnitude(const Vector2f& v);
+	float Distance(const Vector2f& v, const Vector2f& v2);
+	float DistanceSquared(const Vector2f& v, const Vector2f& v2);
 }
 
 

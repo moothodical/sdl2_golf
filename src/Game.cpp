@@ -69,20 +69,17 @@ void Game::Run()
             }
             ball.Input(e);
         }
+		 
 
+        // TODO: fix order
         ball.Update(deltaTime);
-
-        for (Wall& wall : m_walls)
-        {
-
-        }
-
+        ball.CheckWallCollision(m_walls);
         m_window.Clear();
         m_window.Render(m_textures["bg"]);
         for (Wall& wall : m_walls)
-        {
-            m_window.Render(wall);
-        }
+		{
+			m_window.Render(wall);
+		}
         m_window.Render(ball);
         m_window.Display();
     }

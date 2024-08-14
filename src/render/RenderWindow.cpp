@@ -29,7 +29,7 @@ void RenderWindow::Render(Ball& ball)
 {
 
 	float l = ball.GetRadius() * 2;
-	SDL_Rect destBall = { ball.GetPosition().x, ball.GetPosition().y, l, l };
+	SDL_Rect destBall = { ball.GetPosition().x - ball.GetRadius(), ball.GetPosition().y - ball.GetRadius(), l, l};
 
 	SDL_Texture* pointTexture = LoadTexture("res/point.png");
 
@@ -49,7 +49,7 @@ void RenderWindow::Render(Ball& ball)
 
 void RenderWindow::Render(Wall& wall)
 {
-	SDL_Rect dest = { wall.m_position.x, wall.m_position.y, 32, 64 };
+	SDL_Rect dest = { wall.m_position.x, wall.m_position.y, 32, 64};
     SDL_RenderCopy(m_renderer, wall.m_texture, nullptr, &dest);
 }
 void RenderWindow::Render(SDL_Texture* texture)
@@ -60,11 +60,10 @@ void RenderWindow::Render(SDL_Texture* texture)
 void RenderWindow::RenderArrow(Ball& ball, float angle)
 {
     Vector2f mousePos = ball.GetMousePosAsVector();
-    Vector2f ballMidpoint = ball.GetMidpoint();
     float initVelocityFactor = 200;
     
     // Calculate distance
-    Vector2f direction(mousePos.x - ballMidpoint.x, mousePos.y - ballMidpoint.y);
+    Vector2f direction(mousePos.x - ball.GetPosition().x, mousePos.y - ball.GetPosition().y);
     float distance = sqrt(direction.x * direction.x + direction.y * direction.y);
     Vector2f normalizedDirection = Utils::Normalize(direction);
 
@@ -80,8 +79,8 @@ void RenderWindow::RenderArrow(Ball& ball, float angle)
 
     // Destination rectangle
     SDL_Rect dest = {
-        static_cast<int>(ballMidpoint.x - pivot.x), 
-        static_cast<int>(ballMidpoint.y - pivot.y), 
+        static_cast<int>(ball.GetPosition().x - pivot.x),
+        static_cast<int>(ball.GetPosition().y - pivot.y),
         static_cast<int>(src.w * scale),                    
         static_cast<int>(src.h * scale)                     
     };

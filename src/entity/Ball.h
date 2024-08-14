@@ -3,7 +3,9 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
+#include <vector>
 
+#include "Wall.h"
 #include "../util/Constants.h"
 #include "../util/Math.h"
 #include "../collision/CircleCollider.h"
@@ -12,7 +14,6 @@ class Ball
 {
 private:
 	Vector2f m_position;
-	Vector2f m_midPoint;
 	float m_radius;
 	Vector2f m_velocity;
 	Vector2f m_spin;
@@ -37,7 +38,6 @@ public:
 	void SetArrowRotationAngle(float angle) { m_arrowRotationAngle = angle; }
 	//getters
 	Vector2f GetPosition() { return m_position; }
-	Vector2f GetMidpoint() { return m_midPoint; }
 	float GetRadius() { return m_radius; }
 	Vector2f GetVelocity() { return m_velocity; }
 	SDL_Texture* GetTexture() { return m_texture; }
@@ -47,5 +47,9 @@ public:
 	void Update(double delta);
 	void Input(SDL_Event event);
 	void ApplyFriction(float deltaTime);
+	void CheckWindowCollision();
+	void CheckWallCollision(std::vector<Wall>& walls);
+	void Reflect(Vector2f collisionPoint, float distance);
+	Vector2f ClosestPointOnRect(Wall& wall);
 	Vector2f GetMousePosAsVector();
 };
