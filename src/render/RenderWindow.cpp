@@ -84,6 +84,8 @@ SDL_Rect RenderWindow::GetTextRect(Vector2f position, SDL_Texture* texture)
     int texH = 0;
     SDL_QueryTexture(texture, NULL, NULL, &texW, &texH);
     SDL_Rect dest = { position.x, position.y, texW, texH };
+
+    std::vector<std::string> e = { "hi", "there" };
     return dest;
 }
 

@@ -12,16 +12,18 @@
 #include "entity/Wall.h"
 #include "render/RenderWindow.h"
 #include "Grid.h"
+#include "LevelEditor.h"
+#include "LevelManager.h"
 
 class Game
 {
 private:
 	RenderWindow m_window;
 	Grid m_grid;
+	LevelManager m_levelManager;
 	TTF_Font* m_font;
 	std::unordered_map<std::string, SDL_Texture*> m_textures;
 	std::unordered_map<std::string, SDL_Surface*> m_surfaces;
-	std::vector<Wall> m_walls;
 public:
 	enum class GameState
 	{
@@ -33,6 +35,7 @@ public:
 	~Game();
 	bool Init();
 	void InitObjects();
+	void Input(SDL_Event& e);
 	void LoadTextures();
 	void Run();
 	void CleanUp();

@@ -23,6 +23,8 @@
     <ClCompile Include="src\entity\Ball.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Grid.cpp" />
+    <ClCompile Include="src\LevelManager.cpp" />
+    <ClCompile Include="src\LevelEditor.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\render\RenderWindow.cpp" />
     <ClCompile Include="src\util\Math.cpp" />
@@ -30,9 +32,13 @@
   <ItemGroup>
     <ClInclude Include="src\collision\CircleCollider.h" />
     <ClInclude Include="src\entity\Ball.h" />
+    <ClInclude Include="src\entity\Hole.h" />
     <ClInclude Include="src\entity\Wall.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Grid.h" />
+    <ClInclude Include="src\Level.h" />
+    <ClInclude Include="src\LevelEditor.h" />
+    <ClInclude Include="src\LevelManager.h" />
     <ClInclude Include="src\render\RenderWindow.h" />
     <ClInclude Include="src\util\Constants.h" />
     <ClInclude Include="src\util\Math.h" />

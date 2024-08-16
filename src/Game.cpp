@@ -4,7 +4,8 @@ Game::Game()
 	: m_window(RenderWindow("Golf", WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_grid(Grid(32)),
     m_font(nullptr),
-    m_gameState(Game::GameState::PLAY)
+    m_gameState(Game::GameState::PLAY),
+    m_levelManager(LevelManager())
 {
 }
 
@@ -23,13 +24,14 @@ bool Game::Init()
     TTF_Init();
     m_font = TTF_OpenFont("res/font.ttf", 25);
     LoadTextures();
+    m_levelManager.SetTextures(m_textures);
+    m_levelManager.LoadLevels();
     InitObjects();
     return true;
 }
 
 void Game::InitObjects()
 {
-    m_walls.push_back(Wall(Vector2f(500, 300), m_textures["wall"]));
 }
 
 void Game::LoadTextures()
@@ -47,6 +49,24 @@ void Game::LoadTextures()
     m_textures["wall"] = wallTexture;
 }
 
+void Game::Input(SDL_Event& e)
+{
+    if (e.type == SDL_MOUSEBUTTONDOWN)
+    {
+        if (e.button.button == SDL_BUTTON_RIGHT)
+        {
+            if (m_gameState == GameState::PLAY)
+            {
+                SetGameState(Game::GameState::LEVEL_EDIT);
+            } 
+            else if (m_gameState == GameState::LEVEL_EDIT)
+            {
+                SetGameState(Game::GameState::PLAY);
+            }
+        }
+    }
+}
+
 void Game::Run()
 {
     #pragma region setup
@@ -56,10 +76,11 @@ void Game::Run()
     // delta time
     Uint64 last = SDL_GetPerformanceCounter();
     double deltaTime = 0;
+    Level level = m_levelManager.LoadLevel(1);
     #pragma endregion
 
     #pragma region object_creation
-    Ball ball(Vector2f(100, 100), 15, m_textures["ball"]);
+    Ball ball(Vector2f(level.m_ballLoc), 15, m_textures["ball"]);
     #pragma endregion
 
     UpdateGameStateText();
@@ -77,17 +98,22 @@ void Game::Run()
             {
                 quit = true;
             }
-            ball.Input(e);
+
+            Input(e);
+
+            if (m_gameState == GameState::PLAY)
+            {
+				ball.Input(e);
+            }
         }
 		 
-
         // TODO: fix order
         ball.Update(deltaTime);
-        ball.CheckWallCollision(m_walls);
+        ball.CheckWallCollision(level.m_walls);
         m_window.Clear();
         m_window.Render(m_textures["bg"]);
         m_window.Render(m_grid);
-        for (Wall& wall : m_walls)
+        for (Wall& wall : level.m_walls)
 		{
 			m_window.Render(wall);
 		}
@@ -123,16 +149,22 @@ void Game::CleanUp()
 void Game::SetGameState(Game::GameState gameState)
 {
     m_gameState = gameState;
+    UpdateGameStateText();
+    if (m_gameState == GameState::LEVEL_EDIT)
+    {
+        LevelEditor levelEditor = LevelEditor();
+        levelEditor.Update();
+    }
 }
 
 const char* Game::GetGameStateText()
 {
     switch (m_gameState)
     {
-    case GameState::PLAY:
-        return "play";
-    case GameState::LEVEL_EDIT:
-        return "level editor";
+		case GameState::PLAY:
+			return "play";
+		case GameState::LEVEL_EDIT:
+			return "level editor";
     }
 }
 

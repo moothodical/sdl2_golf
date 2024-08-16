@@ -21,18 +21,24 @@ void Ball::Input(SDL_Event e)
     
     if (e.type == SDL_MOUSEBUTTONDOWN)
     {
-        mouseDownPos = GetMousePosAsVector();
-        m_isMouseDown = true;
+        if (e.button.button == SDL_BUTTON_LEFT)
+        {
+			mouseDownPos = GetMousePosAsVector();
+			m_isMouseDown = true;
+        }
     }
 
 
     if (e.type == SDL_MOUSEBUTTONUP)
     {
+        if (e.button.button == SDL_BUTTON_LEFT)
+        {
+			m_isMouseDown = false;
+        }
         //mouseUpPos = GetMousePosAsVector();
         //distance = sqrt(pow(mouseDownPos.x, 2) - pow(mouseUpPos.x, 2) + pow(mouseDownPos.y, 2) - pow(mouseUpPos.y, 2));
         //float angle = CalculateAngleBetweenPoints(m_midPoint, mouseUpPos);
         //SetArrowRotationAngle(angle);
-        m_isMouseDown = false;
 
         //std::cout << angle << std::endl;
     }
