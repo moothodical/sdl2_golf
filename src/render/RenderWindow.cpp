@@ -55,7 +55,7 @@ void RenderWindow::Render(Wall& wall)
 
 void RenderWindow::Render(Hole& hole)
 {
-	SDL_Rect dest = { hole.m_position.x + hole.m_radius, hole.m_position.y + hole.m_radius, hole.m_radius, hole.m_radius};
+	SDL_Rect dest = { hole.m_position.x - hole.m_radius / 2, hole.m_position.y - hole.m_radius / 2, hole.m_radius, hole.m_radius};
     SDL_RenderCopy(m_renderer, hole.m_texture, nullptr, &dest);
 }
 

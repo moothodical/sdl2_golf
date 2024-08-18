@@ -152,7 +152,6 @@ void Ball::CheckWallCollision(std::vector<Wall>& walls)
 
 bool Ball::CheckHoleCollision(Hole& hole)
 {
-    // distance between their radius
     float distance = Utils::DistanceSquared(m_position, hole.m_position);
     float sumSquared = pow(m_radius + hole.m_radius, 2);
     if (distance < sumSquared)
