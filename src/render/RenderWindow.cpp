@@ -53,6 +53,12 @@ void RenderWindow::Render(Wall& wall)
     SDL_RenderCopy(m_renderer, wall.m_texture, nullptr, &dest);
 }
 
+void RenderWindow::Render(Hole& hole)
+{
+	SDL_Rect dest = { hole.m_position.x + hole.m_radius, hole.m_position.y + hole.m_radius, hole.m_radius, hole.m_radius};
+    SDL_RenderCopy(m_renderer, hole.m_texture, nullptr, &dest);
+}
+
 void RenderWindow::Render(Grid& grid)
 {
     int increment = grid.m_step;

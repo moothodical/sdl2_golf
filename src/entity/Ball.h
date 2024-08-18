@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Wall.h"
+#include "Hole.h"
 #include "../util/Constants.h"
 #include "../util/Math.h"
 #include "../collision/CircleCollider.h"
@@ -49,6 +50,7 @@ public:
 	void ApplyFriction(float deltaTime);
 	void CheckWindowCollision();
 	void CheckWallCollision(std::vector<Wall>& walls);
+	bool CheckHoleCollision(Hole& hole);
 	void Reflect(Vector2f collisionPoint, float distance);
 	Vector2f ClosestPointOnRect(Wall& wall);
 	Vector2f GetMousePosAsVector();

@@ -4,6 +4,7 @@
 
 #include "../entity/Ball.h"
 #include "../entity/Wall.h"
+#include "../entity/Hole.h"
 #include "../Grid.h"
 
 class RenderWindow
@@ -22,6 +23,7 @@ public:
 	void Render(Ball& ball);
 	void RenderArrow(Ball& ball, float angle);
 	void Render(Wall& ball);
+	void Render(Hole& hole);
 	void Render(Grid& grid);
 	void Render(SDL_Texture* texture);
 	SDL_Rect GetTextRect(Vector2f position, SDL_Texture* texture);

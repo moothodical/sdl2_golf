@@ -24,8 +24,7 @@ bool Game::Init()
     TTF_Init();
     m_font = TTF_OpenFont("res/font.ttf", 25);
     LoadTextures();
-    m_levelManager.SetTextures(m_textures);
-    m_levelManager.LoadLevels();
+    m_levelManager.Init(m_textures);
     InitObjects();
     return true;
 }
@@ -42,11 +41,13 @@ void Game::LoadTextures()
     SDL_Texture* bgTexture = m_window.LoadTexture("res/bg.png");
     SDL_Texture* ballTexture = m_window.LoadTexture("res/player.png");
     SDL_Texture* wallTexture = m_window.LoadTexture("res/wall.png");
+    SDL_Texture* holeTexture = m_window.LoadTexture("res/hole.png");
     
     m_textures["gamestate"] = gameStateTexture;
     m_textures["bg"] = bgTexture;
     m_textures["ball"] = ballTexture;
     m_textures["wall"] = wallTexture;
+    m_textures["hole"] = holeTexture;
 }
 
 void Game::Input(SDL_Event& e)
@@ -72,15 +73,15 @@ void Game::Run()
     #pragma region setup
     bool quit = false;
     SDL_Event e;
-
+    Level level = m_levelManager.GetCurrentLevel();
     // delta time
     Uint64 last = SDL_GetPerformanceCounter();
     double deltaTime = 0;
-    Level level = m_levelManager.LoadLevel(1);
+
     #pragma endregion
 
     #pragma region object_creation
-    Ball ball(Vector2f(level.m_ballLoc), 15, m_textures["ball"]);
+    Ball ball(Vector2f(level.m_ballLoc), 5, m_textures["ball"]);
     #pragma endregion
 
     UpdateGameStateText();
@@ -109,14 +110,23 @@ void Game::Run()
 		 
         // TODO: fix order
         ball.Update(deltaTime);
-        ball.CheckWallCollision(level.m_walls);
         m_window.Clear();
         m_window.Render(m_textures["bg"]);
+
+        if (ball.CheckHoleCollision(level.m_hole))
+        {
+           level = m_levelManager.LoadNextLevel();
+        }
+
         m_window.Render(m_grid);
+        
         for (Wall& wall : level.m_walls)
 		{
 			m_window.Render(wall);
 		}
+
+        m_window.Render(level.m_hole);
+        ball.CheckWallCollision(level.m_walls);
         m_window.Render(ball);
 
         // font stuff

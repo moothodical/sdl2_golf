@@ -150,6 +150,18 @@ void Ball::CheckWallCollision(std::vector<Wall>& walls)
     }
 }
 
+bool Ball::CheckHoleCollision(Hole& hole)
+{
+    // distance between their radius
+    float distance = Utils::DistanceSquared(m_position, hole.m_position);
+    float sumSquared = pow(m_radius + hole.m_radius, 2);
+    if (distance < sumSquared)
+    {
+        return true;
+    }
+    return false;
+}
+
 void Ball::Reflect(Vector2f collisionPoint, float distance)
 {
 	std::cout << "Collision at: " << collisionPoint.x << ", " << collisionPoint.y << std::endl;
