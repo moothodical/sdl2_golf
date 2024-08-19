@@ -81,7 +81,7 @@ void Game::Run()
     #pragma endregion
 
     #pragma region object_creation
-    Ball ball(Vector2f(level.m_ballLoc), 5, m_textures["ball"]);
+    Ball ball(Vector2f(level.m_ballLoc), 10, m_textures["ball"]);
     #pragma endregion
 
     UpdateGameStateText();
@@ -116,6 +116,7 @@ void Game::Run()
         if (ball.CheckHoleCollision(level.m_hole))
         {
            level = m_levelManager.LoadNextLevel();
+           ball.StopAndPlace(m_levelManager.GetCurrentLevel().m_ballLoc);
         }
 
         m_window.Render(m_grid);

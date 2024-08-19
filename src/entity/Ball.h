@@ -22,7 +22,6 @@ private:
 	CircleCollider m_collider;
 	float m_arrowRotationAngle;
 	float m_speed;
-	float m_friction;
 	bool m_isMouseDown;
 
 	// methods
@@ -52,6 +51,7 @@ public:
 	void CheckWallCollision(std::vector<Wall>& walls);
 	bool CheckHoleCollision(Hole& hole);
 	void Reflect(Vector2f collisionPoint, float distance);
+	void StopAndPlace(Vector2f position);
 	Vector2f ClosestPointOnRect(Wall& wall);
 	Vector2f GetMousePosAsVector();
 };

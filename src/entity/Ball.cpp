@@ -7,8 +7,7 @@ Ball::Ball(Vector2f position, float radius, SDL_Texture* texture)
 	m_velocity(Vector2f(0, 0)),
 	m_texture(texture),
 	m_collider(CircleCollider(position, radius)),
-    m_speed(500),
-    m_friction(1000)
+    m_speed(500)
 {
 
 }
@@ -88,12 +87,35 @@ void Ball::Move(float delta)
     }
 void Ball::ApplyFriction(float deltaTime)
 {
+    const float highSpeedThreshold = 1000;
+    const float lowSpeedThreshold = 500;
+    const float highFriction = 1000;
+    const float lowFriction = 250;
     float speed = Utils::Magnitude(m_velocity);
 
-    if (speed > 0) {
-        Vector2f normalizedVelocity = Utils::Normalize(m_velocity);
-        Vector2f frictionForce(normalizedVelocity.x * m_friction, normalizedVelocity.y * m_friction);
+    float friction;
+    if (speed > highSpeedThreshold)
+    {
+        friction = highFriction;
+    }
+    else if (speed < lowSpeedThreshold)
+    {
+        friction = lowFriction;
+    }
+    else
+    {
+         // Linear interpolation for friction
+        float frictionRange = highFriction - lowFriction;
+        float speedRange = highSpeedThreshold - lowSpeedThreshold;
+        float speedNormalized = (speed - lowSpeedThreshold) / speedRange;
+        friction = lowFriction + (frictionRange * speedNormalized);
+    }
 
+    if (speed > 0) {
+
+        Vector2f normalizedVelocity = Utils::Normalize(m_velocity);
+        Vector2f frictionForce(normalizedVelocity.x * friction, normalizedVelocity.y * friction);
+       
         m_velocity.x -= frictionForce.x * deltaTime;
         m_velocity.y -= frictionForce.y * deltaTime;
 
@@ -176,6 +198,14 @@ void Ball::Reflect(Vector2f collisionPoint, float distance)
 	m_position.x += overlap * collisionNormal.x;
 	m_position.y += overlap * collisionNormal.y;
 }
+
+void Ball::StopAndPlace(Vector2f position)
+{
+    m_velocity = Vector2f(0, 0);
+    m_position = position;
+
+}
+
 Vector2f Ball::ClosestPointOnRect(Wall& wall)
 {
     float closestX = m_position.x;
