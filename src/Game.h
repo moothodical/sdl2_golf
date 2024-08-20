@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <iostream>
 #include <unordered_map>
 #include <SDL_ttf.h>
@@ -14,6 +15,7 @@
 #include "Grid.h"
 #include "LevelEditor.h"
 #include "LevelManager.h"
+#include "sound/SoundManager.h"
 
 class Game
 {

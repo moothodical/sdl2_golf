@@ -10,6 +10,7 @@
 #include "../util/Constants.h"
 #include "../util/Math.h"
 #include "../collision/CircleCollider.h"
+#include "../sound/SoundManager.h"
 
 class Ball
 {

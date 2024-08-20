@@ -31,9 +31,9 @@ void LevelManager::LoadLevels()
 	m_walls.emplace(2, m_walls[2]);
 	m_walls.emplace(3, m_walls[3]);
 
-	m_holes.emplace(1, Hole(Vector2f(900, 500), 20, m_textures.at("hole")));
-	m_holes.emplace(2, Hole(Vector2f(64 , 64), 20, m_textures.at("hole")));
-	m_holes.emplace(3, Hole(Vector2f(500, 700), 20, m_textures.at("hole")));
+	m_holes.emplace(1, Hole(Vector2f(900, 500), 25, m_textures.at("hole")));
+	m_holes.emplace(2, Hole(Vector2f(64 , 64), 25, m_textures.at("hole")));
+	m_holes.emplace(3, Hole(Vector2f(500, 700), 25, m_textures.at("hole")));
 }
 
 Level LevelManager::LoadNextLevel()

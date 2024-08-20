@@ -27,6 +27,7 @@
     <ClCompile Include="src\LevelEditor.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\render\RenderWindow.cpp" />
+    <ClCompile Include="src\sound\SoundManager.cpp" />
     <ClCompile Include="src\util\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +41,7 @@
     <ClInclude Include="src\LevelEditor.h" />
     <ClInclude Include="src\LevelManager.h" />
     <ClInclude Include="src\render\RenderWindow.h" />
+    <ClInclude Include="src\sound\SoundManager.h" />
     <ClInclude Include="src\util\Constants.h" />
     <ClInclude Include="src\util\Math.h" />
   </ItemGroup>
@@ -102,13 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2_ttf\SDL2_ttf-2.22.0\include;C:\SDL2_image\SDL2_image-2.8.2\include;C:\SDL2.Compiler\SDL2-2.26.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2_mixer\include;C:\SDL2_ttf\SDL2_ttf-2.22.0\include;C:\SDL2_image\SDL2_image-2.8.2\include;C:\SDL2.Compiler\SDL2-2.26.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDL2_ttf\SDL2_ttf-2.22.0\lib\x64;C:\SDL2_image\SDL2_image-2.8.2\lib\x64;C:\SDL2.Compiler\SDL2-2.26.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SDL2_mixer\lib\x64;C:\SDL2_ttf\SDL2_ttf-2.22.0\lib\x64;C:\SDL2_image\SDL2_image-2.8.2\lib\x64;C:\SDL2.Compiler\SDL2-2.26.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,13 +135,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2_ttf\SDL2_ttf-2.22.0\include;C:\SDL2_image\SDL2_image-2.8.2\include;C:\SDL2.Compiler\SDL2-2.26.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2_mixer\include;C:\SDL2_ttf\SDL2_ttf-2.22.0\include;C:\SDL2_image\SDL2_image-2.8.2\include;C:\SDL2.Compiler\SDL2-2.26.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SDL2_ttf\SDL2_ttf-2.22.0\lib\x64;C:\SDL2_image\SDL2_image-2.8.2\lib\x64;C:\SDL2.Compiler\SDL2-2.26.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\SDL2_mixer\lib\x64;C:\SDL2_ttf\SDL2_ttf-2.22.0\lib\x64;C:\SDL2_image\SDL2_image-2.8.2\lib\x64;C:\SDL2.Compiler\SDL2-2.26.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

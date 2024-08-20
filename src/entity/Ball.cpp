@@ -27,7 +27,6 @@ void Ball::Input(SDL_Event e)
         }
     }
 
-
     if (e.type == SDL_MOUSEBUTTONUP)
     {
         if (e.button.button == SDL_BUTTON_LEFT)
@@ -178,6 +177,7 @@ bool Ball::CheckHoleCollision(Hole& hole)
     float sumSquared = pow(m_radius + hole.m_radius, 2);
     if (distance < sumSquared)
     {
+        SoundManager::GetInstance()->PlaySound("hole");
         return true;
     }
     return false;
@@ -185,6 +185,7 @@ bool Ball::CheckHoleCollision(Hole& hole)
 
 void Ball::Reflect(Vector2f collisionPoint, float distance)
 {
+    SoundManager::GetInstance()->PlayHitWallSound(Utils::Magnitude(m_velocity));
 	std::cout << "Collision at: " << collisionPoint.x << ", " << collisionPoint.y << std::endl;
 	Vector2f collisionNormal(m_position.x - collisionPoint.x, m_position.y - collisionPoint.y);
 	float magnitude = Utils::Magnitude(collisionNormal);
@@ -203,7 +204,6 @@ void Ball::StopAndPlace(Vector2f position)
 {
     m_velocity = Vector2f(0, 0);
     m_position = position;
-
 }
 
 Vector2f Ball::ClosestPointOnRect(Wall& wall)
