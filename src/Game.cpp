@@ -160,6 +160,7 @@ void Game::CleanUp()
     m_textures.clear();
     m_surfaces.clear();
     
+    SoundManager::GetInstance()->Cleanup();
     TTF_Quit();
     SDL_Quit();
 }

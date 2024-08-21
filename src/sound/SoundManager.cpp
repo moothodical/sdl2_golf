@@ -1,10 +1,25 @@
 #include "SoundManager.h"
+#include <iostream>
 
 SoundManager* SoundManager::m_instance = nullptr;
 
 SoundManager::SoundManager()
 {
 	LoadSounds();
+}
+
+void SoundManager::Cleanup()
+{
+	std::cout << "destrutor callet" << std::endl;
+	Mix_HaltChannel(-1); 
+	
+	for (const auto& pair : m_sounds)
+	{
+		Mix_FreeChunk(pair.second);
+	}
+
+	Mix_CloseAudio();
+	Mix_Quit();
 }
 
 SoundManager* SoundManager::GetInstance()

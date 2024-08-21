@@ -11,6 +11,7 @@ private:
 	static SoundManager* m_instance;
 	std::unordered_map<std::string, Mix_Chunk*> m_sounds;
 public:
+	void Cleanup();
 	static SoundManager* GetInstance();
     bool LoadSounds();
 	void PlaySound(std::string sound);
