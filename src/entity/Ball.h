@@ -9,7 +9,6 @@
 #include "Hole.h"
 #include "../util/Constants.h"
 #include "../util/Math.h"
-#include "../collision/CircleCollider.h"
 #include "../sound/SoundManager.h"
 
 class Ball
@@ -20,7 +19,6 @@ private:
 	Vector2f m_velocity;
 	Vector2f m_spin;
 	SDL_Texture* m_texture;
-	CircleCollider m_collider;
 	float m_arrowRotationAngle;
 	float m_speed;
 	bool m_isMouseDown;
@@ -42,7 +40,6 @@ public:
 	float GetRadius() { return m_radius; }
 	Vector2f GetVelocity() { return m_velocity; }
 	SDL_Texture* GetTexture() { return m_texture; }
-	CircleCollider GetCollider() { return m_collider; }
 	float GetArrowRotationAngle() { return m_arrowRotationAngle; }
 	bool IsMouseDown() { return m_isMouseDown; }
 	void Update(double delta);

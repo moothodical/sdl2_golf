@@ -40,6 +40,20 @@ bool SoundManager::LoadSounds()
 	}
 	m_sounds.emplace("swing", swing);
 
+	Mix_Chunk* swingUp = Mix_LoadWAV("res/sound/swing_up.wav");
+	if (swingUp == NULL)
+	{
+		return false;
+	}
+	m_sounds.emplace("swing_up", swingUp);
+
+	Mix_Chunk* swingDown = Mix_LoadWAV("res/sound/swing_down.wav");
+	if (swingDown == NULL)
+	{
+		return false;
+	}
+	m_sounds.emplace("swing_down", swingDown);
+
 	Mix_Chunk* hole = Mix_LoadWAV("res/sound/hole.wav");
 	if (hole == NULL)
 	{
@@ -74,7 +88,16 @@ bool SoundManager::LoadSounds()
 
 void SoundManager::PlaySound(std::string sound)
 {
-	Mix_PlayChannel(-1, m_sounds.at(sound), 0);
+	auto found = m_sounds.find(sound);
+	if (found != m_sounds.end())
+	{
+		Mix_PlayChannel(-1, m_sounds.at(sound), 0);
+	}
+	else
+	{
+		std::cout << "Sound " << sound << " not found." << std::endl;
+	}
+
 }
 
 void SoundManager::PlayHitWallSound(float speed)

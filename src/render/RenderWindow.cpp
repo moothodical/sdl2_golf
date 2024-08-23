@@ -125,14 +125,21 @@ void RenderWindow::RenderArrow(Ball& ball, float angle)
         static_cast<int>(src.w * scale),                    
         static_cast<int>(src.h * scale)                     
     };
-    
-    angle = atan2(direction.y, direction.x) * 180 / M_PI; // Convert radians to degrees
-    angle += 180; // Invert angle by adding 180 degrees
+    // Invert the angle
+    angle += 180;
     if (angle >= 360) {
-        angle -= 360; // Normalize angle to be within [0, 360) range
+        angle -= 360; 
     }
-   
-    Vector2f ballVelocity(normalizedDirection.x * scale * initVelocityFactor, normalizedDirection.y * scale * initVelocityFactor);
+
+    // Convert the angle back to a direction vector
+    float angleRad = angle * M_PI / 180; // Convert degrees to radians
+    Vector2f invertedDirection = { cos(angleRad), sin(angleRad) };
+
+    // Scale the direction vector by the desired velocity
+    Vector2f ballVelocity = { invertedDirection.x * scale * initVelocityFactor,
+                              invertedDirection.y * scale * initVelocityFactor };
+
+    // Update the ball's velocity
     ball.SetVelocity(ballVelocity);
    
     SDL_RenderCopyEx(m_renderer, arrowTexture, &src, &dest, angle, &pivot, SDL_FLIP_NONE);

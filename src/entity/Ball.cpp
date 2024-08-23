@@ -6,7 +6,6 @@ Ball::Ball(Vector2f position, float radius, SDL_Texture* texture)
 	m_radius(radius),
 	m_velocity(Vector2f(0, 0)),
 	m_texture(texture),
-	m_collider(CircleCollider(position, radius)),
     m_speed(500)
 {
 
@@ -20,7 +19,7 @@ void Ball::Input(SDL_Event e)
     
     if (e.type == SDL_MOUSEBUTTONDOWN)
     {
-        if (e.button.button == SDL_BUTTON_LEFT)
+        if (e.button.button == SDL_BUTTON_LEFT && m_velocity.x < 1 && m_velocity.y < 1)
         {
 			mouseDownPos = GetMousePosAsVector();
 			m_isMouseDown = true;
@@ -66,7 +65,7 @@ Vector2f Ball::GetMousePosAsVector()
 
 void Ball::Move(float delta)
 {
-    //float spinFactor = 1.05;
+    float spinFactor = 1.05;
     //Vector2f spinEffect(m_spin.x * spinFactor, m_spin.y * spinFactor);
 
     ApplyFriction(delta);
@@ -230,15 +229,17 @@ void Ball::Update(double delta)
     {
         return;
     }
-      
+     
     if (m_isMouseDown)
     {
         Vector2f mousePos = GetMousePosAsVector();
         float angle = CalculateAngleBetweenPoints(m_position, mousePos);
         SetArrowRotationAngle(angle);
     }
+    else {
+        Move(delta);
+    }
         
-    Move(delta);
 
 
     // Debug output

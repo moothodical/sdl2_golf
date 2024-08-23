@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\collision\CircleCollider.cpp" />
     <ClCompile Include="src\entity\Ball.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Grid.cpp" />
@@ -31,7 +30,6 @@
     <ClCompile Include="src\util\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\collision\CircleCollider.h" />
     <ClInclude Include="src\entity\Ball.h" />
     <ClInclude Include="src\entity\Hole.h" />
     <ClInclude Include="src\entity\Wall.h" />
